@@ -1,0 +1,12 @@
+setuptools
+sip
+NumPy
+pandas
+Pillow
+matplotlib
+mahotas
+opencv-contrib-python
+scipy
+scikit-image
+scikit-learn
+imutils
