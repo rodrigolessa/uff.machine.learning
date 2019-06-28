@@ -1,4 +1,7 @@
-﻿from zernike_moments import ZernikeMoments
+﻿# Import the necessary packages
+# Image Descriptors
+from descriptor_zernike_moments import ZernikeMoments
+# Math
 from scipy.spatial import distance as dist
 import numpy as np
 import pandas as pd
@@ -10,12 +13,12 @@ import os
 import sys
 import time
 
-imageFolder = "D:\\mpeg7"
+imageFolder = "C:\\caltech256\\251.airplanes-101"
 #imageFolderConverted = '{}\\{}'.format(imageFolder, 'converted')
-imageFolderThreshold = '{}\\{}'.format(imageFolder, 'threshold')
-imageExtension = '.png'
-imageFinder = '{}\\*{}'.format(imageFolderConverted, imageExtension)
-imageDebugName = 'butterfly-1'
+imageFolderThreshold = '{}\\{}'.format(imageFolder, 'thresholder')
+imageExtension = '.jpg'
+imageFinder = '{}\\*{}'.format(imageFolder, imageExtension)
+imageDebugName = '251_0002'
 imageDebug = '{}{}'.format(imageDebugName, imageExtension)
 imagesInFolder = glob.glob(imageFinder)
 imageMomentsFile = 'index.pkl'

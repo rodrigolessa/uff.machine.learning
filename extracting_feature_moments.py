@@ -42,6 +42,7 @@ imageMomentsFile = 'index.pkl'
 imageSize = 300
 imageRadius = 180
 zernikeDegree = 8
+debug = False
 
 # initialize our dictionary to save features
 index = {}
@@ -139,14 +140,15 @@ for path in imagesInFolder:
 	# Debugging: Show the original binary image and its boundary
 	#debugging = np.hstack((grayscale, equalized, blur))
 	# Debugging:
-	#cv2.imshow("Debugging: Grayscale + Equalization + Threshold", debugging)
-	cv2.imshow("Original", original)
-	cv2.imshow("Grayscale", grayscale)
-	cv2.imshow("Blur", blur)
-	cv2.imshow("Equalization", equalized)
-	cv2.imshow("Threshold", thresholder)
-	cv2.imshow("Edge", edged)
-	cv2.waitKey(0)
+	if debug:
+		#cv2.imshow("Debugging: Grayscale + Equalization + Threshold", debugging)
+		cv2.imshow("Original", original)
+		cv2.imshow("Grayscale", grayscale)
+		cv2.imshow("Blur", blur)
+		cv2.imshow("Equalization", equalized)
+		cv2.imshow("Threshold", thresholder)
+		cv2.imshow("Edge", edged)
+		cv2.waitKey(0)
 	# TODO: Draw center of mass
 	#cv2.imwrite("{}\\{}.jpg".format(imageFolderThreshold, imageName), outline)
 	# Compute Zernike moments to characterize the shape of object outline
