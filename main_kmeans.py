@@ -81,7 +81,7 @@ print(accuracy)
 
 colormap = np.array(['Red', 'Blue', 'Green', 'Cyan', 'Magenta', 'Yellow', 'Black', 'Blue', 'Green', 'Red'])
 
-z = plt.scatter(x.z1, x.z3, x.z21, c = colormap[model.labels_])
+z = plt.scatter(x.z1, x.z7, x.z21, c = colormap[model.labels_])
 
 x.insert(11, "class", model.labels_)
 x.replace({'class': {0: "Ak47", 1: "Backpack", 2: "Bat", 3: "Glove", 4: "Elephant", 5: "Homer", 6: "Traffic-light", 7: "Umbrella", 8: "Zebra", 9: "Airplanes"}})

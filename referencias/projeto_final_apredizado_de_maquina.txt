@@ -1,0 +1,25 @@
+O Algoritmo do OPTICS  apresentou melhores resultados e mais sólidos em relação aos ruídos/outliers.
+
+Bag Of Words com SIFT já foi superado por fishing mas só dependia de uma estrutura maior do que temos para executar toda o processo.
+
+Classes selecionadas:
+001.ak47
+003.backpack
+004.baseball-bat
+005.baseball-glove
+064.elephant-101
+104.homer-simpson
+226.traffic-light
+235.umbrella-101
+250.zebra
+251.airplanes-101
+
+K-Means Clustering and k-Nearest Neighbors algorithm
+k-Means Clustering is an unsupervised learning algorithm that is used for clustering whereas KNN is a supervised learning algorithm used for classification.
+
+K-Means = Número de K medianas
+
+Step 1: Determine K value by Elbow method and specify the number of clusters K
+
+
+
