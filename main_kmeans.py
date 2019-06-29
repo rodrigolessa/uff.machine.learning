@@ -38,8 +38,6 @@ features = np.array(list(sparse_matrix.values()))
 #Converting into Datafarme
 x = pd.DataFrame(features)
 
-x.head()
-
 x.columns = ['z0','z1','z2','z3','z4','z5','z6','z7','z8','z9','z10','z11','z12','z13','z14','z15','z16','z17','z18','z19','z20','z21','z22','z23','z24']
 
 print('')
@@ -47,7 +45,7 @@ print('Head')
 print(x.head())
 
 # Finding the optimum number of clusters for k-means clustering
-###Nc = range(1, 10)
+###Nc = range(1, 25)
 ###kmeans = [KMeans(n_clusters=i) for i in Nc]
 #print('kmeans')
 #print(kmeans)
@@ -61,7 +59,7 @@ print(x.head())
 #pl.title('Elbow Curve')
 #pl.show()
 
-#Implementation of K-Means Clustering
+# Implementation of K-Means Clustering
 # Com 10 classes conhecidas
 model = KMeans(n_clusters = 10)
 model.fit(x)

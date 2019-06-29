@@ -1,7 +1,8 @@
 from sklearn import metrics
+from sklearn import preprocessing
+#from sklearn.preprocessing import StandardScaler
+#from sklearn.datasets.samples_generator import make_blobs
 from sklearn.cluster import DBSCAN
-from sklearn.preprocessing import StandardScaler
-from sklearn.datasets.samples_generator import make_blobs
 import numpy as np
 import pandas as pd
 import cv2
@@ -25,18 +26,24 @@ print(str(len(sparse_matrix)) + ' itens/imagens no total:')
 labels_true = pd.factorize([k.split('_')[0] for k in sparse_matrix.keys()])[0]
 
 # Convert the dict to a numpy array
-features = np.array(list(sparse_matrix.values()))
+x = np.array(list(sparse_matrix.values()))
+#x = df.values #returns a numpy array
 
-#Converting into Datafarme
-x = pd.DataFrame(features)
+min_max_scaler = preprocessing.MinMaxScaler()
 
-x.columns = ['z0','z1','z2','z3','z4','z5','z6','z7','z8','z9','z10','z11','z12','z13','z14','z15','z16','z17','z18','z19','z20','z21','z22','z23','z24']
+x_scaled = min_max_scaler.fit_transform(x)
 
-print('Head')
-print(x.head())
+# #Converting into Datafarme
+# x = pd.DataFrame(features)
+df = pd.DataFrame(x_scaled)
+
+df.columns = ['z0','z1','z2','z3','z4','z5','z6','z7','z8','z9','z10','z11','z12','z13','z14','z15','z16','z17','z18','z19','z20','z21','z22','z23','z24']
+
+#print('Head')
+print(df.head())
 
 # O data set de imagemMPEG7 possui 69 grupos
-dbscan = DBSCAN(eps=0.01, metric='cosine', min_samples=3).fit(x)
+dbscan = DBSCAN(eps=0.01, metric='cosine', min_samples=3).fit(df)
 
 #print(dbscan.labels_[:50])
 
@@ -54,12 +61,21 @@ print('Estimated number of noise points: %d' % n_noise_)
 print("Homogeneity: %0.3f" % metrics.homogeneity_score(labels_true, labels))
 print("Completeness: %0.3f" % metrics.completeness_score(labels_true, labels))
 print("V-measure: %0.3f" % metrics.v_measure_score(labels_true, labels))
-# The Rand Index computes a similarity measure between two clusterings by considering 
-# all pairs of samples and counting pairs that are assigned in the same 
+# The Rand Index computes a similarity measure between two clusterings by considering
+# all pairs of samples and counting pairs that are assigned in the same
 # or different clusters in the predicted and true clusterings.
 print("Adjusted Rand Index: %0.3f" % metrics.adjusted_rand_score(labels_true, labels))
 print("Adjusted Mutual Information: %0.3f" % metrics.adjusted_mutual_info_score(labels_true, labels, average_method='arithmetic'))
 print("Silhouette Coefficient: %0.3f" % metrics.silhouette_score(x, labels))
+
+# TODO: Testar
+#ax = fig.add_subplot(geo + 5, projection='3d', title='dbscan')
+
+core = dbscan.core_sample_indices_
+#print(repr(core))
+
+#size = [5 if i not in core else 40 for i in range(len(x))]
+#print(repr(size))
 
 # #############################################################################
 # Plot result

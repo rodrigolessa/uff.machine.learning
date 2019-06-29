@@ -8,7 +8,7 @@
 # Image Descriptors
 from descriptor_zernike_moments import ZernikeMoments
 # Pre-processing
-from image_pre_processing import ImagePreProcessing
+from extracting_pre_processing import ImagePreProcessing
 # Math
 import numpy as np
 # Data
