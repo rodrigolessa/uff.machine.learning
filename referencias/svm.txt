@@ -1,0 +1,45 @@
+SVM - Máquinas de Vetor Suporte
+
+Support Vector Machines (SVM)
+Base em Teoria de Aprendizado Estatístico
+Estabelece princípios que devem ser seguidos na obtenção de classificadores com boa generalização
+Bons resultados em diversos domínios
+Destaque em mineração de textos e Bioinformática
+
+Atributos devem ser numéricos
+Categóricos devem ser pré-processados
+É necessário normalizar os dados
+Similar a k-NN e RNA
+Originalmente é para classificação binária
+Classes +1 e -1
+
+SVM em problemas multiclasse
+-> Combinação de classificadores binários
+
+Vantagens SVM
+
+Boa capacidade de generalização
+Robustas a objetos de grande dimensionalidade
+Convexidade do problema de otimização ? mínimo global
+Determinísticas
+Uso de funções Kernel para caso não linear torna o algoritmo eficiente
+Construção de fronteiras complexas de forma computacionalmente tratável
+
+Exercício
+
+Treinar e testar MLP e SVM nos conjuntos de dados da UCI escolhidos em aulas anteriores e de paridade
+MLP: MultilayerPerceptron
+SVM: SMO (classificação) ou SMOreg (regressão)
+Verificar tempo de treinamento e arquitetura das redes neurais, além de desempenho preditivo
+Variar Kernel da SVM: RBF e polinomial
+
+Como escolher os parâmetros - RNAs e SVMs?
+
+Busca em grid, com cada eixo do grid sendo um parâmetro
+Implementação: http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.GridSearchCV.html
+
+Busca aleatória
+Implementação: http://scikit-learn.org/stable/modules/generated/sklearn.grid_search.RandomizedSearchCV.html
+
+Mais informações em Bergstra & Bengio - “Random Search for Hyper-Parameter Optimization” - JMLR 13 (2012), pgs 281-305
+http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf

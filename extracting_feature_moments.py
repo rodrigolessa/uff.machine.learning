@@ -31,7 +31,7 @@ import time
 
 #args = vars(ap.parse_args())
 
-imageFolder = "C:\\caltech256\\251.airplanes-101"
+imageFolder = "D:\\caltech256"
 #imageFolderConverted = '{}\\{}'.format(imageFolder, 'converted')
 imageFolderThreshold = '{}\\{}'.format(imageFolder, 'thresholder')
 imageExtension = '.jpg'
@@ -87,20 +87,19 @@ ip = ImagePreProcessing(imageDebug, imageSize, False)
 # Equalização baseado em histograma da imagem
 # CLAHE (Contrast Limited Adaptive Histogram Equalization)
 clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+# Kernel for search
+kernel = np.ones((3, 3), np.uint8)
 
 startIndexing = time.time()
 
 # Loop over the sprite images
 for path in imagesInFolder:
-	
 	# Extract image name, this will serve as unqiue key into the index dictionary.
 	imageName = path[path.rfind('\\') + 1:].lower().replace(imageExtension, '')
-
+	# Show progress bar
 	progress(i, qtd)
-	
 	#Pre-processing
 	#outline = ip.getTheBestContour(path)
-
 	# RGB image
 	original = cv2.imread(path)
 	# Convert it to grayscale, image with one channel 
@@ -131,7 +130,6 @@ for path in imagesInFolder:
 	# Canny also produced a computational theory of edge detection explaining why the technique works.
 	edged = cv2.Canny(thresholder, 30, 200)
 	# Pode ser uma boa opção aplicar uma erosão para eliminar ruídos
-	kernel = np.ones((3, 3), np.uint8)
 	# Erosion: Shrinking the foreground
 	# https://homepages.inf.ed.ac.uk/rbf/HIPR2/erode.htm
 	# Redução das bordas do objeto. Consegue eliminar objetos 
@@ -150,7 +148,7 @@ for path in imagesInFolder:
 		cv2.imshow("Edge", edged)
 		cv2.waitKey(0)
 	# TODO: Draw center of mass
-	#cv2.imwrite("{}\\{}.jpg".format(imageFolderThreshold, imageName), outline)
+	cv2.imwrite("{}\\{}{}".format(imageFolderThreshold, imageName, imageExtension), thresholder)
 	# Compute Zernike moments to characterize the shape of object outline
 	moments = zm.describe(thresholder)
 
@@ -173,6 +171,7 @@ doneIndexing = time.time()
 elapsed = (doneIndexing - startIndexing) / 1000
 
 print(" ")
+print("Tempo de execução:")
 print(elapsed)
 
 cv2.destroyAllWindows()
