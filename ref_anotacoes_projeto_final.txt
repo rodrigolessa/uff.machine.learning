@@ -33,3 +33,19 @@ The OPTICS algorithm shares many similarities with the DBSCAN algorithm, and can
 
 
 
+
+
+https://www.pyimagesearch.com/2019/06/10/keras-mask-r-cnn/
+https://hackernoon.com/build-your-first-neural-network-to-predict-house-prices-with-keras-3fb0839680f4
+https://medium.com/ai-india/hello-world-tensorflow-6ce3f5bcbb6b
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.205.9731&rep=rep1&type=pdf
+https://scikit-learn.org/stable/modules/clustering.html#mean-shift
+https://scikit-learn.org/stable/modules/clustering.html#silhouette-coefficient
+https://scikit-learn.org/stable/modules/clustering.html#homogeneity-completeness-and-v-measure
+https://scikit-learn.org/stable/modules/clustering.html#id17
+https://scikit-learn.org/stable/modules/clustering.html#adjusted-rand-index
+https://scikit-learn.org/stable/modules/clustering.html#clustering-performance-evaluation
+https://www.microsoft.com/en-us/research/publication/decision-forests-for-classification-regression-density-estimation-manifold-learning-and-semi-supervised-learning/?from=http%3A%2F%2Fresearch.microsoft.com%2Fapps%2Fpubs%2Fdefault.aspx%3Fid%3D155552
+https://github.com/matterport/Mask_RCNN
+
+

@@ -3,12 +3,15 @@ import pandas as pd
 import numpy as np
 import pylab as pl
 import pickle as cp
-from sklearn import datasets
 import matplotlib.pyplot as plt
-import sklearn.metrics as sm
+#import sklearn.metrics as sm
+from sklearn import datasets
 from sklearn.cluster import KMeans
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
 
 #Loading the dataset
 #iris = datasets.load_iris()
@@ -40,7 +43,6 @@ x = pd.DataFrame(features)
 
 x.head()
 
-
 #Preprocessing
 #X = dataset.iloc[:, :-1].values
 #y = dataset.iloc[:, 4].values
@@ -70,8 +72,10 @@ for i in range(1, 40):
     error.append(np.mean(pred_i != y_test))
 
 plt.figure(figsize=(12, 6))
-plt.plot(range(1, 40), error, color='black', linestyle='dashed', marker='o',
-         markerfacecolor='grey', markersize=10)
+plt.plot(range(1, 40), error, color='black', linestyle='dashed', 
+    marker='o',
+    markerfacecolor='grey', 
+    markersize=10)
 plt.title('Erro %')
 plt.xlabel('K')
 plt.ylabel('Erro')
@@ -81,21 +85,12 @@ plt.ylabel('Erro')
 print('min error:' + str(min(error)))
 print('k:' + str(error.index(min(error))))
 
-from sklearn.neighbors import KNeighborsClassifier
 classifier = KNeighborsClassifier(n_neighbors=error.index(min(error)))
 classifier.fit(X_train, y_train)
-
-
  
 y_pred = classifier.predict(X_test)
 
-
- 
-from sklearn.metrics import classification_report, confusion_matrix
 print(confusion_matrix(y_test, y_pred))
 print(classification_report(y_test, y_pred))
-
-
-
 
 a = 1
