@@ -50,9 +50,12 @@ X = x.values
 y = labels_true
 
 #Creating training and test splits
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.10)
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.15, random_state=10)
+
  
 #Performing Feature Scaling
+from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 scaler.fit(X_train)
 
@@ -76,7 +79,7 @@ plt.plot(range(1, 40), error, color='black', linestyle='dashed',
 plt.title('Erro %')
 plt.xlabel('K')
 plt.ylabel('Erro')
-plt.show()
+#plt.show()
 
 # menor erro k = error.index(min(error))
 print('min error:' + str(min(error)))
