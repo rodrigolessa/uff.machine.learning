@@ -1,0 +1,76 @@
+2. Extração de Featrures
+
+2.1 Preprocessamento das Imagens
+
+Cortamos a imagem e fazemos redimensionamento para tornar mais rápido o processamento.
+
+
+
+No fluxo de preprocessamento das imagens, cada imagem é convertida em escalas de cinza e é aplicado um filtro filtro bilateral com cálculo da média para suavização de ruídos. Após, a imagem é binarizada com limiarização com o método Otsu's e Riddler-Calvard.
+
+2.2 Segmentação e métodos de detecção de bordas
+
+
+Usamos o detector de bordas Canny
+
+2.3 Extração de características locais
+
+
+A atividade de extração de características é responsável por descrever localmente uma imagem em termos das características existentes identificadas (no nosso caso em termos de sua forma).
+Primeiro, a imagem é preprocessada e então suas características extraídas e organizadas de forma vetorial.
+
+A representação vetorial da imagem permite a aplicação de métricas para análise de dissimilaridade como a distância Euclideana e a distância de Cossenos.
+
+Para extração das características usamos um descritor de forma baseado nos Polinomios de Zernike.
+
+Descritores de imagem são um conjuntos de técnicas que descrevem imagens em termos de suas características como forma, cor, textura, movimento entre outros. Descritores globais procuram identificar características gerais de uma imagem, enquanto descritores locais procuram características em partes específicas de uma imagem.
+
+
+
+
+
+
+
+
+Preprocessamento das Imagens (antes das extrações)
+
+No fluxo de preprocessamento das imagens, cada imagem é convertida em escalas de cinza e é aplicado um filtro filtro bilateral com cálculo da média para suavização de ruídos. Após, a imagem é binarizada com limiarização com o método Otsu's e Riddler-Calvard.
+
+- Cortando uma imagem / Crop
+- Redimensionamento / Resize
+
+Histogramas e equalização de imagem
+- Equalização de Histograma
+
+Suavização de imagens
+- Suavização por cálculo da média
+- Suavização pela Gaussiana
+- Suavização pela mediana
+- Suavização com filtro bilateral
+
+Binarização com limiar
+- Threshold adaptativo
+- Threshold com Otsu e Riddler-Calvard
+
+Segmentação e métodos de detecção de bordas
+- Sobel
+- Filtro Laplaciano
+- Detector de bordas Canny
+
+Extração de Características
+
+Modelo
+
+O Vector Space Model (VSM) [4] é uma técnica conhecida no contexto de problemas
+relacionados à obtenção de informação (IR). Essa técnica baseia-se em interpretar um
+documento como um vetor, onde cada dimensão corresponde a uma característica do
+documento.
+
+A representação vetorial da imagem permite a aplicação de métricas para análise de dissimilaridade como a distância Euclideana e a distância de Cossenos.
+
+Extração de características locais
+
+A atividade de extração de características é responsável por descrever localmente uma imagem em termos das características existentes identificadas (no nosso caso em termos de sua forma).
+Primeiro, a imagem é preprocessada e então suas características extraídas e organizadas de forma vetorial.
+
+Descritores de imagem são um conjuntos de tecnicas que descrevem imagens em termos de suas caracteristicas como forma, cor, textura, movimento entre outros. Descritores globais procuram identificar caracteristicas gerais de uma imagem, enquanto descritores locais procuram caracteristicas em partes especificas de uma imagem.

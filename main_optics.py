@@ -50,7 +50,7 @@ clust.fit(x)
 
 labels_050 = cluster_optics_dbscan(reachability=clust.reachability_,
                                    core_distances=clust.core_distances_,
-                                   ordering=clust.ordering_, eps=0.5)
+                                   ordering=clust.ordering_, eps=0.06)
 labels_200 = cluster_optics_dbscan(reachability=clust.reachability_,
                                    core_distances=clust.core_distances_,
                                    ordering=clust.ordering_, eps=2)

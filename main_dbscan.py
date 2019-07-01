@@ -43,7 +43,7 @@ df.columns = ['z0','z1','z2','z3','z4','z5','z6','z7','z8','z9','z10','z11','z12
 print(df.head())
 
 # O data set de imagemMPEG7 possui 69 grupos
-dbscan = DBSCAN(eps=0.01, metric='cosine', min_samples=3).fit(df)
+dbscan = DBSCAN(eps=0.006, metric='cosine', min_samples=4).fit(df)
 
 #print(dbscan.labels_[:50])
 

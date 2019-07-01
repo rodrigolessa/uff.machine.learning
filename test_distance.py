@@ -13,21 +13,21 @@ import os
 import sys
 import time
 
-imageFolder = "C:\\caltech256\\251.airplanes-101"
+imageFolder = "C:\\caltech256"
 #imageFolderConverted = '{}\\{}'.format(imageFolder, 'converted')
 imageFolderThreshold = '{}\\{}'.format(imageFolder, 'thresholder')
 imageExtension = '.jpg'
 imageFinder = '{}\\*{}'.format(imageFolder, imageExtension)
-imageDebugName = '251_0002'
+imageDebugName = '235_0020' # 064_0028, 003_0029, 004_0015, 005_0008, 104_0007, 226_0050, 235_0020, 250_0079, 251_0014
 imageDebug = '{}{}'.format(imageDebugName, imageExtension)
 imagesInFolder = glob.glob(imageFinder)
 imageMomentsFile = 'index.pkl'
 # Number of interations
 ni = 0 # global variable
-niMax = 5 # global variable
+niMax = 3 # global variable
 # Names of the images visited
 visit = [] # global array
- 
+
 # Pandas Dataframe
 #unpickled_df = pd.read_pickle(imageMomentsFile)
 
@@ -74,7 +74,7 @@ def searcher(imgName):
 
     # Sort our results, where a smaller distance indicates
     # higher similarity
-    results = sorted([(v, k) for (k, v) in results.items()])[:7]
+    results = sorted([(v, k) for (k, v) in results.items()])[:niMax]
 
     ni+=1
 
