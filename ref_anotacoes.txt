@@ -74,3 +74,106 @@ A atividade de extração de características é responsável por descrever localment
 Primeiro, a imagem é preprocessada e então suas características extraídas e organizadas de forma vetorial.
 
 Descritores de imagem são um conjuntos de tecnicas que descrevem imagens em termos de suas caracteristicas como forma, cor, textura, movimento entre outros. Descritores globais procuram identificar caracteristicas gerais de uma imagem, enquanto descritores locais procuram caracteristicas em partes especificas de uma imagem.
+
+
+
+
+
+
+
+
+
+Clustering validation
+
+Silhouette plot
+
+Recall that the silhouette coefficient (Si) measures how similar an object i is to the the other objects in its own cluster versus those in the neighbor cluster. Si values range from 1 to - 1:
+
+A value of Si close to 1 indicates that the object is well clustered. In the other words, the object i is similar to the other objects in its group.
+A value of Si close to -1 indicates that the object is poorly clustered, and that assignment to some other cluster would probably improve the overall results.
+It’s possible to draw silhouette coefficients of observations using the function fviz_silhouette() [factoextra package], which will also print a summary of the silhouette analysis output. To avoid this, you can use the option print.summary = FALSE.
+
+# Silhouette information
+silinfo <- km.res$silinfo
+names(silinfo)
+# Silhouette widths of each observation
+head(silinfo$widths[, 1:3], 10)
+# Average silhouette width of each cluster
+silinfo$clus.avg.widths
+# The total average (mean of all individual silhouette widths)
+silinfo$avg.width
+# The size of each clusters
+km.res$size
+
+# Silhouette width of observation
+sil <- km.res$silinfo$widths[, 1:3]
+# Objects with negative silhouette
+neg_sil_index <- which(sil[, 'sil_width'] < 0)
+sil[neg_sil_index, , drop = FALSE]
+
+Validation statistics
+
+cluster.number: number of clusters
+cluster.size: vector containing the number of points in each cluster
+average.distance, median.distance: vector containing the cluster-wise within average/median distances
+average.between: average distance between clusters. We want it to be as large as possible
+average.within: average distance within clusters. We want it to be as small as possible
+clus.avg.silwidths: vector of cluster average silhouette widths. Recall that, the silhouette width is also an estimate of the average distance between clusters. Its value is comprised between 1 and -1 with a value of 1 indicating a very good cluster.
+
+
+TRADUÇÃO
+---------------------------------------------------------------------------------
+
+
+Validação de Agrupamento
+
+Estatísticas de validação
+
+Número de agrupamentos
+cluster.size: vetor contendo o número de pontos em cada cluster
+average.distance, median.distance: vetor contendo o cluster dentro das distâncias médias / medianas
+average.between: distância média entre clusters. Nós queremos que seja o maior possível
+average.within: distância média dentro de clusters. Queremos que seja o menor possível
+clus.avg.silwidths: vetor de larguras médias de silhueta de cluster. Lembre-se de que a largura da silhueta também é uma estimativa da distância média entre clusters. Seu valor é compreendido entre 1 e -1 com um valor de 1 indicando um cluster muito bom.
+
+[5 rows x 81 columns]
+
+Algoritimo: DBSCAN
+Parametros:
+Raio: eps = 0.015
+Mínimo de objetos: min_samples = 3
+Algoritmo de distância: distância do cosseno
+Total de itens/imagens/amostras: 1845
+Número de grupos conhecido: 10
+
+Número de grupos estimado: 8
+Número de ruídos/outliers estimado: 824
+
+Homogeneidade: 0.278
+Cada cluster contém apenas membros de uma única classe. 
+
+Completude: 0.556
+Todos os membros de uma determinada classe são atribuídos ao mesmo cluster.
+
+Os gráficos a seguir demonstram o impacto do número de clusters e do número de amostras em várias métricas de avaliação de desempenho de cluster.
+
+V-measure: 0.371
+Mostra uma dependência entre o número de clusters e o número de amostras, a medida aumenta significativamente conforme o número de grupos está mais próximo do número total de amostras usadas para calcular a medida. 
+
+Adjusted Rand Index: 0.471
+Adjusted Mutual Information: 0.363
+
+Coeficiente de silhueta: 0.060
+O coeficiente de silhueta (Si) mede a similaridade de um objeto i aos outros objetos em seu próprio cluster em relação aos do cluster vizinho. Valores de Si variam de 1 a - 1:
+Um valor de Si próximo a 1 indica que o objeto está bem agrupado.
+Um valor de Si próximo a -1 indica que o objeto está mal agrupado e que a designação para algum outro cluster provavelmente melhoraria os resultados.
+- Próximo de 0 indica overlapping clusters.
+
+
+Fowlkes-Mallows: 0.661
+O índice Fowlkes-Mallows (sklearn.metrics.fowlkes_mallows_score) pode ser usado quando as atribuições da classe de verdade do solo das amostras são conhecidas. O escore de Fowlkes-Mallows FMI é definido como a média geométrica da precisão pareada e recordação: FMI = TP (TP + FP) (TP + FN)
+Designações de rótulos aleatórias (uniformes) têm uma pontuação FMI próxima a 0.0 para qualquer valor de n_clusters e n_samples (o que não é o caso para Informações mútuas brutas ou a medida V, por exemplo). Limite superior em 1: Valores próximos de zero indicam duas atribuições de rótulo que são amplamente independentes, enquanto valores próximos a um indicam concordância significativa. Além disso, valores de exatamente 0 indicam atribuições de rótulo puramente independentes e um FMI de exatamente 1 indica que as duas atribuições de rótulo são iguais (com ou sem permutação). Nenhuma suposição é feita na estrutura do cluster: pode ser usada para comparar algoritmos de clustering, como k-means, que assume formas de blobs isotrópicos com resultados de algoritmos de cluster espectral que podem encontrar cluster com formas “dobradas”.
+
+
+
+Homogeneity, completeness and V-measure

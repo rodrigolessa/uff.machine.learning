@@ -57,18 +57,18 @@ def _scale(img, size, borderSize):
 
 #args = vars(ap.parse_args())
 
-imageFolder = "D:\\caltech256"
+imageFolder = "C:\\caltech256"
 #imageFolderConverted = '{}\\{}'.format(imageFolder, 'converted')
 imageFolderThreshold = '{}\\{}'.format(imageFolder, 'thresholder')
 imageExtension = '.jpg'
 imageFinder = '{}\\*{}'.format(imageFolder, imageExtension)
-imageDebug = '{}{}'.format('251_0002', imageExtension)
+imageDebug = '{}{}'.format('001_0065', imageExtension)
 imagesInFolder = glob.glob(imageFinder)
 imageMomentsFile = 'index.pkl'
-imageSize = 200
-imageBorderSize = 50
-imageRadius = 200
-zernikeDegree = 8
+imageSize = 224
+imageBorderSize = 100
+imageRadius = 224
+zernikeDegree = 16
 debug = False
 
 # initialize our dictionary to save features
