@@ -13,7 +13,7 @@ import os
 import sys
 import time
 
-imageFolder = "C:\\caltech256\\251.airplanes-101"
+imageFolder = "C:\\caltech256"
 #imageFolderConverted = '{}\\{}'.format(imageFolder, 'converted')
 imageFolderThreshold = '{}\\{}'.format(imageFolder, 'thresholder')
 imageExtension = '.jpg'
@@ -27,7 +27,7 @@ ni = 0 # global variable
 niMax = 3 # global variable
 # Names of the images visited
 visit = [] # global array
- 
+
 # Pandas Dataframe
 #unpickled_df = pd.read_pickle(imageMomentsFile)
 

@@ -1,4 +1,8 @@
 import tensorflow as tf
+# Tensorflow basics:
+# https://www.datacamp.com/community/tutorials/tensorflow-tutorial
+# https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview-with-tensorflow-355bcd26baf0
+# https://github.com/lexfridman/mit-deep-learning
 
 # You can create constants in TF to hold specific values
 a = tf.constant(1)

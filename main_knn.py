@@ -50,12 +50,10 @@ X = x.values
 y = labels_true
 
 #Creating training and test splits
-from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.15, random_state=10)
 
  
 #Performing Feature Scaling
-from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
 scaler.fit(X_train)
 
