@@ -1,3 +1,14 @@
+# Refs
+# https://towardsdatascience.com/build-your-first-deep-learning-classifier-using-tensorflow-dog-breed-example-964ed0689430
+# https://github.com/udacity/dog-project
+# https://github.com/KaimingHe/deep-residual-networks#models
+# https://martin-thoma.com/sota/
+# https://arxiv.org/abs/1707.09725
+
+# https://github.com/nickbiso/Keras-Caltech-256
+# https://github.com/nickbiso/Keras-Caltech-256/blob/master/Caltech%20256.ipynb
+# https://github.com/TropComplique/image-classification-caltech-256
+
 '''
 data/
     train/
@@ -33,8 +44,8 @@ img_width, img_height = 150, 150
 train_data_dir = 'data/train'
 validation_data_dir = 'data/validation'
 nb_train_samples = 1861
-nb_validation_samples = 203
-epochs = 1
+nb_validation_samples = 200
+epochs = 5
 batch_size = 16
 
 if K.image_data_format() == 'channels_first':
@@ -59,11 +70,11 @@ model.add(Flatten())
 model.add(Dense(64))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
-model.add(Dense(1))
+model.add(Dense(10))
 model.add(Activation('sigmoid'))
 
-model.compile(loss='binary_crossentropy',
-              optimizer='rmsprop',
+model.compile(loss='categorical_crossentropy',
+              optimizer='adam',
               metrics=['accuracy'])
 
 # this is the augmentation configuration we will use for training
@@ -81,13 +92,13 @@ train_generator = train_datagen.flow_from_directory(
     train_data_dir,
     target_size=(img_width, img_height),
     batch_size=batch_size,
-    class_mode='binary')
+    class_mode='categorical')
 
 validation_generator = test_datagen.flow_from_directory(
     validation_data_dir,
     target_size=(img_width, img_height),
     batch_size=batch_size,
-    class_mode='binary')
+    class_mode='categorical')
 
 model.fit_generator(
     train_generator,
@@ -99,13 +110,3 @@ model.fit_generator(
 model.save_weights('first_try.h5')
 
 
-# Refs
-# https://towardsdatascience.com/build-your-first-deep-learning-classifier-using-tensorflow-dog-breed-example-964ed0689430
-# https://github.com/udacity/dog-project
-# https://github.com/KaimingHe/deep-residual-networks#models
-# https://martin-thoma.com/sota/
-# https://arxiv.org/abs/1707.09725
-
-# https://github.com/nickbiso/Keras-Caltech-256
-# https://github.com/nickbiso/Keras-Caltech-256/blob/master/Caltech%20256.ipynb
-# https://github.com/TropComplique/image-classification-caltech-256
