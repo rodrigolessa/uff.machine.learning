@@ -70,11 +70,11 @@ def save_bottlebeck_features():
 
 
 def train_top_model():
-    train_data = np.load(open('bottleneck_features_train.npy'))
+    train_data = np.load(open('bottleneck_features_train.npy','rb'))
     train_labels = np.array(
         [0] * (nb_train_samples / 2) + [1] * (nb_train_samples / 2))
 
-    validation_data = np.load(open('bottleneck_features_validation.npy'))
+    validation_data = np.load(open('bottleneck_features_validation.npy','rb'))
     validation_labels = np.array(
         [0] * (nb_validation_samples / 2) + [1] * (nb_validation_samples / 2))
 
@@ -84,8 +84,7 @@ def train_top_model():
     model.add(Dropout(0.5))
     model.add(Dense(1, activation='sigmoid'))
 
-    model.compile(optimizer='rmsprop',
-                  loss='binary_crossentropy', metrics=['accuracy'])
+    model.compile(optimizer='rmsprop',loss='binary_crossentropy', metrics=['accuracy'])
 
     model.fit(train_data, train_labels,
               epochs=epochs,
@@ -96,3 +95,5 @@ def train_top_model():
 
 save_bottlebeck_features()
 train_top_model()
+
+a = 1
