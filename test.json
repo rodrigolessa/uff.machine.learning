@@ -1,0 +1,31 @@
+{
+    "ErrorID": 0,
+    "NextStartUTC": "2020-06-05 16:12:25",
+    "Messages": [
+        {
+            "ID": 6389627537,
+            "MessageUTC": "2020-06-05 16:12:25",
+            "ReceiveUTC": "2020-06-05 16:12:25",
+            "SIN": 128,
+            "MobileID": "01625493SKYC626",
+            "RawPayload": [
+                128,
+                0,
+                55,
+                0,
+                0,
+                23,
+                132,
+                61,
+                23,
+                128,
+                0
+            ],
+            "RegionName": "AORWSC",
+            "OTAMessageSize": 11,
+            "CustomerID": 0,
+            "Transport": 1,
+            "MobileOwnerID": 60002713
+        }
+    ]
+}
