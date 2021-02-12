@@ -25,15 +25,15 @@ with open(imageMomentsFile, 'rb') as pickle_file:
 
 # using list comprehension 
 #print(sum([len(sparse_matrix[x]) for x in sparse_matrix if isinstance(sparse_matrix[x], dict)])) 
-print(str(len(sparse_matrix)) + ' itens/imagens no total:')
-print('5    - primeiros itens:')
-for k in list(sparse_matrix.keys())[:5]:
-    print(' - ' + k)
+print(str(len(sparse_matrix)) + ' itens/imagens no total')
+# print('5    - primeiros itens:')
+# for k in list(sparse_matrix.keys())[:5]:
+#     print(' - ' + k)
 
 # Original labels
 labels_true = pd.factorize([k.split('_')[0] for k in sparse_matrix.keys()])[0]
 
-print(labels_true[:200])
+# print(labels_true[:200])
 
 # Convert the dict to a numpy array
 features = np.array(list(sparse_matrix.values()))
@@ -50,7 +50,9 @@ X = x.values
 y = labels_true
 
 #Creating training and test splits
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.15, random_state=10)
+testsize = 0.15
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=testsize, random_state=10)
 
  
 #Performing Feature Scaling
@@ -83,12 +85,29 @@ plt.ylabel('Erro')
 print('min error:' + str(min(error)))
 print('k:' + str(error.index(min(error))))
 
-classifier = KNeighborsClassifier(n_neighbors=error.index(min(error)))
+print("test size: "+str(testsize)+" %")
+
+pesos = 'uniform' # uniform distance 
+print("weights: "+pesos)
+algoritimo = 'brute' # ball_tree kd_tree brute auto
+print("algoritimo: "+algoritimo)
+Power  = 2  # 1 - manhattan 2 - euclidean
+print("p: "+str("manhattan" if Power == 1 else "euclidean") )
+
+classifier = KNeighborsClassifier(
+    n_neighbors=error.index(min(error)), 
+    weights = pesos,
+    algorithm = algoritimo,
+    p = Power
+    )
+
 classifier.fit(X_train, y_train)
  
 y_pred = classifier.predict(X_test)
 
+print('confusion_matrix:')
 print(confusion_matrix(y_test, y_pred))
+print('report:')
 print(classification_report(y_test, y_pred))
 
 a = 1
